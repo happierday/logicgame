@@ -1,0 +1,3 @@
+# ignore lambda node_modules
+/lambda/*/node_modules
+/lambda/*/package-lock.json

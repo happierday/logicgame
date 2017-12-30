@@ -1,3 +1,3 @@
 # logicgame
 
-# will run on server first, then will ship backend code to AWS Lambda and make it serverless
+# Back End will run on AWS Lambda and make it serverless

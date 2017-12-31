@@ -51,8 +51,8 @@ export class SignupComponent implements OnInit {
                     this.response = JSON.parse(JSON.stringify(data));
                     if(this.response.success){
                         localStorage.setItem('token',this.response.data.token);
-                        localStorage.setItem('username',this.response.userForm);
-                        localStorage.setItem('imgUrl',this.response.imgUrl);
+                        localStorage.setItem('username',this.response.data.username);
+                        localStorage.setItem('imgUrl',this.response.data.imgUrl);
                         this.message = "Successful Signed up";
                         this.messageClass = "alert alert-success";
                         setTimeout(() => {

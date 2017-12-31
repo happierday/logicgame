@@ -55,12 +55,31 @@ function emailExist(email){
     })
 }
 
+function getUserByEmail(email){
+    params = {
+        ExpressionAttributeValues:{
+            ":v1": {
+                S: email
+            }
+        },
+        KeyConditionExpression: "email = :v1",
+        TableName: process.env.DynamoDBUserAccount
+    };
+    return new Promise((resolve,reject) => {
+        dynamoDb.query(params, (err,data) => {
+            if(err) return reject(err);
+            else  resolve(data);
+        })
+    })
+}
+
 //two tables to  check uniquness of email and username
 function uploadToDynamoAccount(event,location){
     params = {
         Item:{
             "email": {S: event.email},
             "password": {S: event.password},
+            "username":  {S: event.username},
             "imgUrl": {S: location}
         },
         TableName: process.env.DynamoDBUserAccount
@@ -111,5 +130,6 @@ module.exports = {
     uploadToDynamoUser: uploadToDynamoUser,
     deleteUser: deleteUser,
     usernameExist: usernameExist,
-    uploadToDynamoAccount: uploadToDynamoAccount
+    uploadToDynamoAccount: uploadToDynamoAccount,
+    getUserByEmail: getUserByEmail
 }

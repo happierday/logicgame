@@ -28,7 +28,7 @@ function usernameExist(username){
             if(err) return reject(err);
             else{
                 if(data.Count === 0) return resolve();
-                return reject("Email already exist!");
+                return reject("Username already exist!");
             }
         })
     })
@@ -49,26 +49,8 @@ function emailExist(email){
             if(err) return reject(err);
             else{
                 if(data.Count === 0) return resolve();
-                return reject("Username already exist!");
+                return reject("Emal already exist!");
             }
-        })
-    })
-}
-
-function getUserByEmail(email){
-    params = {
-        ExpressionAttributeValues:{
-            ":v1": {
-                S: email
-            }
-        },
-        KeyConditionExpression: "email = :v1",
-        TableName: process.env.DynamoDBUserAccount
-    };
-    return new Promise((resolve,reject) => {
-        dynamoDb.query(params, (err,data) => {
-            if(err) return reject(err);
-            else  resolve(data);
         })
     })
 }
@@ -130,6 +112,5 @@ module.exports = {
     uploadToDynamoUser: uploadToDynamoUser,
     deleteUser: deleteUser,
     usernameExist: usernameExist,
-    uploadToDynamoAccount: uploadToDynamoAccount,
-    getUserByEmail: getUserByEmail
+    uploadToDynamoAccount: uploadToDynamoAccount
 }

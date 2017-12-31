@@ -12,7 +12,7 @@ exports.handler = (event, context, callback) => {
                 .then((data) => {
                     let user = data.Items[0];
                     if(userAuthentication.matchPassword(user.password.S,event.password)){
-                        callback(null, {success: true, data: {username: event.username, token: userAuthentication.jwtSign(event.email),imgUrl: user.imgUrl.S }}); 
+                        callback(null, {success: true, data: {username: user.username.S, token: userAuthentication.jwtSign(event.email),imgUrl: user.imgUrl.S }});
                     }else{
                         callback(null, {success: false, msg: "Please enter correct password!"});
                     }

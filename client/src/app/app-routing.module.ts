@@ -8,12 +8,17 @@ import { NocanactiveService } from './services/nocanactive/nocanactive.service'
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
     {
         path: 'signup',
         component: SignupComponent,
         canActivate:[NocanactiveService]
+    },
+    {
+        path: 'profile/:username',
+        component: ProfileComponent,
     },
     {
         path: 'login',

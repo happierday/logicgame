@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
             this.response = JSON.parse(JSON.stringify(data));
             if(this.response.success){
                 localStorage.setItem('token',this.response.data.token);
-                localStorage.setItem('username',this.response.data.userForm);
+                localStorage.setItem('username',this.response.data.username);
                 localStorage.setItem('imgUrl',this.response.data.imgUrl);
-                this.message = "Successful Signed up";
+                this.message = "Successful logged in";
                 this.messageClass = "alert alert-success";
                 setTimeout(() => {
                     this.router.navigate(['/']);

@@ -3,7 +3,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
-
+    
     constructor() { }
     loggedIn(){
         if(tokenNotExpired()){
@@ -11,6 +11,12 @@ export class AuthService {
         }else{
             localStorage.clear();
             return false;
+        }
+    }
+
+    getUsername(){
+        if(tokenNotExpired()){
+            return localStorage.getItem('username');
         }
     }
 }
